@@ -1,6 +1,6 @@
 /** 
   * Fichier:  date.h 
-  * Auteur:   C. Blard (christopher.blard@u-bourgogne.fr)
+  * Auteur:   C. Blard (christopher_blard@etu.u-bourgogne.fr)
   * Date:     Octobre 2019 
   * Cours:    TP1 C++ 
   * Résumé:   Déclaration de la classe Date
@@ -9,7 +9,7 @@
  #ifndef DATE_H
  #define DATE_H
 
-class Date{
+class Date {
 public:
 	Date(int jour, int mois, int annee);
 	int getJour() const;
