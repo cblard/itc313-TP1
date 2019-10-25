@@ -3,7 +3,7 @@
   * Auteur:   C. Blard (christopher_blard@etu.u-bourgogne.fr)
   * Date:     Octobre 2019 
   * Cours:    TP1 C++ 
-  * Résumé:   Déclaration de la classe Date
+  * Résumé:   Déclaration de la classe Client
   */
 
 #ifndef CLIENT_H

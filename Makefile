@@ -5,10 +5,10 @@ CXXFLAGS   = -Wall -Wextra -std=c++11
 DEPFLAGS   = -MMD
 LDFLAGS    = 
 # Replace tp.cpp with the cpp files that need to be compiled
-SRCS       = date.cpp main.cpp client.cpp
+SRCS       = date.cpp main.cpp client.cpp chambre.cpp
 OBJS       = $(SRCS:.cpp=.o)
 # Replace tp_main with the name you want to give to your executable file
-TARGET     = testClient
+TARGET     = testChambre
 DEPS	   = $(OBJS:.o=.d)
 
 all: $(TARGET)

@@ -1,1 +1,1 @@
-main.o: main.cpp date.h client.h
+main.o: main.cpp date.h client.h chambre.h

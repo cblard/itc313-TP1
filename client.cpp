@@ -5,6 +5,7 @@
   * Cours:    TP1 C++ 
   * Résumé:   Définition de la classe Client
   */
+
 #include "client.h"
 #include <string>
 using namespace std; 
