@@ -9,9 +9,11 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <vector>
 #include "date.h"
 #include "client.h"
 #include "chambre.h"
+#include "hotel.h"
 
 using namespace std;
 
@@ -39,5 +41,14 @@ int main(){
 	float prix=chambre1.getPrixNuit();
 	cout<<"Le prix de la chambre est de "<<setprecision(2)<<fixed<<prix<<"€ par nuit.\n";
 	cout<<"Il s'agit d'une chambre "<<chambre1.getType()<<".\n";
+	Chambre chambre2(Double, 195.50);
+
+	// test des hôtels
+
+	Hotel hotel1("Hôtel", "Dijon");
+	vector<Chambre> chambres = {chambre1,chambre2};
+	hotel1.assignerChambres(chambres);
+	cout<<"L'hôtel "<<hotel1.getNom()<<" se trouve à "<<hotel1.getVille()<<".\n";
+
 	return 0;
 }
