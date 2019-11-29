@@ -35,6 +35,9 @@ void Hotel::assignerChambres(vector <Chambre> chambres){
 void Hotel::afficherInfos(){
 	cout<<"Bienvenue à "<<m_ville<<" dans l'hôtel "<<m_nom<<".\n";
 	cout<<"Voici la liste de nos chambres : \n";
+
+	// Boucle pour afficher les infos de chaque chambre 
+	
 	for(unsigned long i=0; i<m_chambres.size(); i++){
 		cout<<"Chambre n°"<<i+1<<" :\n";
 		this->m_chambres.at(i).afficherInfos();

@@ -32,7 +32,9 @@ void Date::modifierDate(int jour, int mois, int annee){
 	m_annee=annee;
 }
 
-bool Date::checkDate(){
+// Fonction qui vérifie si une date existe bien
+
+bool Date::checkDate(){ 
 	switch(m_mois){
 		case 1: case 3: case 5: case 7: case 8: case 10: case 12: 
 		if(m_jour>0 && m_jour<=31) {return true;} else {return false;}

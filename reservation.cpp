@@ -13,7 +13,7 @@ using namespace std;
 
 bool comparerDate(Date date1, Date date2);
 
-Reservation::Reservation(Date debut, Date fin, Hotel hotel, Chambre chambre, Client client){
+Reservation::Reservation(Date debut, Date fin, Hotel hotel, Chambre chambre, Client client){ // Constructeur de Reservation 
 	if(comparerDate(debut, fin)==true) {
 		m_dateDebut=debut;
 		m_dateFin=fin;
@@ -27,7 +27,7 @@ Reservation::Reservation(Date debut, Date fin, Hotel hotel, Chambre chambre, Cli
 }
 
 void Reservation::modifierDates(Date debut, Date fin){
-	if(comparerDate(debut, fin)==true){m_dateDebut=debut; m_dateFin=fin;}
+	if(comparerDate(debut, fin)==true){m_dateDebut=debut; m_dateFin=fin;} // On compare les dates et on vérifie que date1<date2 avant de modifier la date 
 	else{cout<<"Impossible de modifier la date.";}
 }
 
@@ -45,11 +45,11 @@ int Reservation::calculerNbNuits(){
 	int nbJours=0;
 	if(jour1<jour2){nbJours=jour2-jour1;}
 	if(jour1>=jour2){nbJours=tab.at(mois1-1)-jour1+jour2; nbMois--;}
-	return nbAnnees*365+nbMois*30+nbJours-1;
+	return nbAnnees*365+nbMois*30+nbJours-1; // On élimine le cas des années bissextiles
 
 }
 float Reservation::calculerPrix(Chambre chambre){
-	int nbNuits=this->calculerNbNuits();
+	int nbNuits=this->calculerNbNuits(); // On appelle le calcul de nombre de nuits 
 	m_prix=chambre.getPrixNuit()*nbNuits;
 	if(nbNuits>=15) m_prix*=0.9;
 	return m_prix;
@@ -59,7 +59,10 @@ void Reservation::changerChambre(int id){
 	m_chambreID=id;
 }
 
-bool comparerDate(Date date1, Date date2){
+
+// Fonction pour vérifier que date1<date2 
+
+bool comparerDate(Date date1, Date date2){ 
 	if(date1.getAnnee()>date2.getAnnee()){
 		return false; 
 	}

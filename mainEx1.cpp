@@ -1,9 +1,9 @@
 /** 
-  * Fichier:  main.cpp 
+  * Fichier:  mainEx1.cpp 
   * Auteur:   C. Blard (christopher_blard@etu.u-bourgogne.fr)
   * Date:     Octobre 2019 
   * Cours:    TP1 C++ 
-  * Résumé:   Fichier main utilisé pour tester les différentes classes créées
+  * Résumé:   Fichier main utilisé pour la partie 1 du TP
   */
 
 #include <iostream>

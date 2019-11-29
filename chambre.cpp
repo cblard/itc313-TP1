@@ -20,12 +20,12 @@ int Chambre::getID(){
 	return m_id;
 }
 
-string Chambre::getType(){
+string Chambre::getType(){ 
 	switch(m_type){
 	case Single: return "Single"; break;
 	case Double: return "Double"; break;
 	case Suite: return "Suite"; break; 
-	default: return "Non reconnu"; break;
+	default: return "Non reconnu"; break; // On retourne une chaîne de caractères pour pour avoir l'afficher dans un cout 
 	} 
 }
 
@@ -33,7 +33,7 @@ float Chambre::getPrixNuit(){
 	return m_prixNuit;
 }
 
-void Chambre::modifierChambre(int type){
+void Chambre::modifierChambre(int type){ // On associe un entier à un type
 	switch(type){
 		case 1: m_type=Single; m_prixNuit=100; break;
 		case 2: m_type=Double; m_prixNuit=125; break;
@@ -46,6 +46,6 @@ void Chambre::afficherInfos(){
 	cout<<"Il s'agit d'une chambre "<<this->getType()<<".\n";
 }
 
-bool Chambre::disponible(){
+bool Chambre::disponible(){ // à compléter
 	return true; 
 }
