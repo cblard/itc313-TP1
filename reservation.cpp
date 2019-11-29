@@ -11,54 +11,45 @@
 
 using namespace std; 
 
+bool comparerDate(Date date1, Date date2);
+
 Reservation::Reservation(Date debut, Date fin, Hotel hotel, Chambre chambre, Client client){
-	if(debut.getMois()<fin.getMois()) { // On suppose que la réservation se passe sur la même année, la classe Date ne comprenant pas encore le système d'années
+	if(comparerDate(debut, fin)==true) { // On suppose que la réservation se passe sur la même année, la classe Date ne comprenant pas encore le système d'années
 		m_dateDebut=debut;
 		m_dateFin=fin;
 		m_hotelID=hotel.getID();
 		m_chambreID=chambre.getID();
 		m_clientID=client.getID();
 	}
-	if(debut.getMois()==fin.getMois()){
-			if(debut.getJour()<fin.getJour()){
-				m_dateDebut=debut;
-				m_dateFin=fin;
-				m_hotelID=hotel.getID();
-				m_chambreID=chambre.getID();
-				m_clientID=client.getID();
-			}
-			else cout<<"Impossible de créer une réservation, la date de la fin de réservation n'est pas correcte.";
-	}	
-	if(debut.getMois()<fin.getMois()){
+	else{
 		cout<<"Impossible de créer une réservation, la date de la fin de réservation n'est pas correcte.";
 	}
 }
 
 void Reservation::modifierDates(Date debut, Date fin){
-	if(debut.getMois()<fin.getMois()) { // On suppose que la réservation se passe sur la même année, la classe Date ne comprenant pas encore le système d'années
-		m_dateDebut=debut;
-		m_dateFin=fin;
-	}
-	if(debut.getMois()==fin.getMois()){
-			if(debut.getJour()<fin.getJour()){
-				m_dateDebut=debut;
-				m_dateFin=fin;
-			}
-			else cout<<"Impossible de modifier la réservation, la date de la fin de réservation n'est pas correcte.";
-	}	
-	if(debut.getMois()<fin.getMois()){
-		cout<<"Impossible de modifier la réservation, la date de la fin de réservation n'est pas correcte.";
-	}
+	if(comparerDate(debut, fin)==true){m_dateDebut=debut; m_dateFin=fin;}
+	else{cout<<"Impossible de modifier la date.";}
 }
 
+int Reservation::calculerNbNuits(){
+	vector <int> tab={31,28,31,30,31,30,31,31,30,31,30,31};
+	int annee1=m_dateDebut.getAnnee(), annee2=m_dateFin.getAnnee();
+	int mois1=m_dateDebut.getMois(), mois2=m_dateFin.getMois();
+	int jour1=m_dateDebut.getJour(), jour2=m_dateFin.getJour();
+
+	int nbAnnees=0;
+	if(annee2!=annee1){nbAnnees=annee2-annee1-1;}
+	int nbMois=0;
+	if(mois1<mois2){nbMois=mois2-mois1-1;}
+	if(mois1>mois2){nbMois=12-mois1-1+mois2;}
+	int nbJours=0;
+	if(jour1<jour2){nbJours=jour2-jour1;}
+	if(jour1>jour2){nbJours=tab.at(mois1-1)-jour1+jour2;}
+	return nbAnnees*365+nbMois*30+nbJours;
+
+}
 float Reservation::calculerPrix(Chambre chambre){
-	int nbMois=0;;
-	if(m_dateDebut.getMois()!=m_dateFin.getMois()){
-		nbMois=m_dateFin.getMois()-m_dateDebut.getMois()-1;
-		cout<<nbMois;
-	}
-	int nbJours=(30-m_dateDebut.getJour())+m_dateFin.getJour();
-	int nbNuits=nbMois*30+nbJours; 
+	int nbNuits=this->calculerNbNuits();
 	m_prix=chambre.getPrixNuit()*nbNuits;
 	if(nbNuits>=15) m_prix*=0.9;
 	return m_prix;
@@ -66,4 +57,30 @@ float Reservation::calculerPrix(Chambre chambre){
 
 void Reservation::changerChambre(int id){
 	m_chambreID=id;
+}
+
+bool comparerDate(Date date1, Date date2){
+	if(date1.getAnnee()>date2.getAnnee()){
+		return false; 
+	}
+	if(date1.getAnnee()<date2.getAnnee()){
+		return true; 
+	}
+	if(date1.getAnnee()==date2.getAnnee()){
+		if(date1.getMois()>date2.getMois()){
+			return false;
+		}
+		if(date1.getMois()<date2.getMois()){
+			return true;
+		}
+		if(date1.getMois()==date2.getMois()){
+			if(date1.getJour()>=date2.getJour()){
+				return false; 
+			}
+			if(date1.getJour()<date2.getJour()){
+				return true; 
+			}
+
+		}
+	}
 }

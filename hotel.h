@@ -19,6 +19,7 @@ public:
 	int getID();
 	string getNom();
 	string getVille();
+	void afficherInfos(); 
 	void assignerChambres(vector <Chambre> chambres);
 private:
 	int m_id;

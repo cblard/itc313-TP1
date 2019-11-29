@@ -7,7 +7,9 @@
   */
 
 #include "chambre.h"
+#include <iomanip>
 #include <string>
+#include <iostream>
 using namespace std;
 
 Chambre::Chambre(type typeChambre, float prixNuit) : m_type(typeChambre), m_prixNuit(prixNuit) {
@@ -33,4 +35,9 @@ float Chambre::getPrixNuit(){
 
 void Chambre::modifierChambre(float prixNuit){
 	m_prixNuit=prixNuit;
+}
+
+void Chambre::afficherInfos(){
+	cout<<"Le prix de la chambre est de "<<setprecision(2)<<fixed<<m_prixNuit<<"€ par nuit.\n";
+	cout<<"Il s'agit d'une chambre "<<this->getType()<<".\n";
 }

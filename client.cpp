@@ -8,6 +8,8 @@
 
 #include "client.h"
 #include <string>
+#include <iostream>
+
 using namespace std; 
 
 Client::Client(string nom, string prenom) : m_nom(nom), m_prenom(prenom){
@@ -37,4 +39,8 @@ void Client::ajouterReserv(){
 
 void Client::changerNom(string nom){
 	m_nom=nom; 
+}
+
+void Client::afficherInfos(){
+	cout<<"Client n°"<<m_id<<" : "<<m_nom<<" "<<m_prenom<<".\nNombre de réservations : "<<m_nbReserv<<".\n";
 }

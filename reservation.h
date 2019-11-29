@@ -27,6 +27,7 @@ public:
 	Reservation(Date debut, Date fin, Hotel hotel, Chambre chambre, Client client);
 	void modifierDates(Date debut, Date fin);
 	void changerChambre(int id);
+	int calculerNbNuits();
 	float calculerPrix(Chambre chambre);
 };
 

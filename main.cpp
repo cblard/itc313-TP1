@@ -1,13 +1,12 @@
 /** 
   * Fichier:  main.cpp 
   * Auteur:   C. Blard (christopher_blard@etu.u-bourgogne.fr)
-  * Date:     Octobre 2019 
+  * Date:     Novembre 2019 
   * Cours:    TP1 C++ 
   * Résumé:   Fichier main utilisé pour tester les différentes classes créées
   */
 
 #include <iostream>
-#include <iomanip>
 #include <string>
 #include <vector>
 #include "date.h"
@@ -17,47 +16,94 @@
 #include "reservation.h"
 
 using namespace std;
+bool comparerDates(Date date1, Date date2);
 
 int main(){
+	// Question 6 : création d'un hôtel et de clients 
 
-	// test des dates
+	vector <Chambre> chambre;
+	Chambre chambreSingle(Single, 100);
+	Chambre chambreDouble(Double, 125);
+	Chambre chambreSuite(Suite, 210);
+	chambreSingle.afficherInfos();
 
-	Date date1(1,1,1);
-	Date date2(1,1,1);
-	date1.modifierDate(7,7,7);
-	int mois=date1.getMois();
-	cout<<"Mois : "<<mois<<"\n";
+	for(int i=0;i<3;i++) {chambre.push_back(chambreSingle);}
+	for(int i=3;i<8;i++) {chambre.push_back(chambreDouble);}
+	for(int i=8;i<10;i++) {chambre.push_back(chambreSuite);}
 
-	// test des clients 
+	Hotel hotel("L'Hôtel", "Dijon");
+	hotel.assignerChambres(chambre);
 
-	Client client1("Hallyday", "Johnny");
-	client1.ajouterReserv();
-	client1.changerNom("Bravo");
-	string nomClient=client1.getNom();
-	cout<<"Le nom du client est : \""<<nomClient<<"\" et il a "<<client1.getNbReserv()<<" réservation(s).\n";
+	// hotel.afficherInfos();
 
-	// test des chambres
+	vector <Client> clients; 
 
-	Chambre chambre1(Single, 180.50);
-	chambre1.modifierChambre(200);
-	float prix=chambre1.getPrixNuit();
-	cout<<"Le prix de la chambre est de "<<setprecision(2)<<fixed<<prix<<"€ par nuit.\n";
-	cout<<"Il s'agit d'une chambre "<<chambre1.getType()<<".\n";
-	Chambre chambre2(Double, 250);
+	Client client1("Johnny", "Depp"); clients.push_back(client1);
+	Client client2("Johnny", "Hallyday"); clients.push_back(client2);
+	Client client3("Johnny", "Bravo"); clients.push_back(client3);
+	Client client4("Johnny", "Cash"); clients.push_back(client4);
 
-	// test des hôtels
+	// for(int i=0;i<4;i++) {clients.at(i).afficherInfos();}
 
-	Hotel hotel1("Hôtel", "Dijon");
-	vector<Chambre> chambres = {chambre1,chambre2};
-	hotel1.assignerChambres(chambres);
-	cout<<"L'hôtel "<<hotel1.getNom()<<" se trouve à "<<hotel1.getVille()<<".\n";
+	int jour, mois, annee;
+	bool checkInf=false; int compteur1=0;
+	Date dateDebut, dateFin; 
 
-	// test des réservations
+	while(checkInf==false){
+		if(compteur1!=0) {cout<<"La date de début est postérieure à la date de fin, réessayez.\n";}
+		bool checkDate=false; int compteur2=0;
+		while(checkDate==false){
+			if(compteur2!=0) {cout<<"Erreur, réessayez.\n";}
+			cout<<"Veuillez entrer la date de début de la réservation : \nEntrez le jour : "; cin>>jour;
+			cout<<"Entrez le mois : "; cin>>mois;
+			cout<<"Entrez l'année : "; cin>>annee;
+			dateDebut.modifierDate(jour, mois, annee);
+			checkDate=dateDebut.checkDate();
+			compteur2++;
+		}
+		checkDate=false; compteur2=0;
+		while(checkDate==false){
+			if(compteur2!=0) {cout<<"Erreur, réessayez.\n";}
+			cout<<"Veuillez entrer la date de fin de la réservation : \nEntrez le jour : "; cin>>jour;
+			cout<<"Entrez le mois : "; cin>>mois;
+			cout<<"Entrez l'année : "; cin>>annee;
+			dateFin.modifierDate(jour, mois, annee);
+			checkDate=dateFin.checkDate();
+			compteur2++;
+		}
 
-	Reservation reservation1(date2, date1, hotel1, chambre1, client1);
-	//reservation1.modifierDates(date2, date1);
-	reservation1.changerChambre(0);
-	cout<<"Le prix de la réservation est de : "<<reservation1.calculerPrix(chambre1)<<" euros.\n";
+		checkInf=comparerDates(dateDebut, dateFin);
+		compteur1++;
+	}
+	Reservation reservation(dateDebut, dateFin, hotel, chambre.at(1), client1);
+	cout<<reservation.calculerPrix(chambreSingle);
+
 
 	return 0;
+}
+
+bool comparerDates(Date date1, Date date2){
+	if(date1.getAnnee()>date2.getAnnee()){
+		return false; 
+	}
+	if(date1.getAnnee()<date2.getAnnee()){
+		return true; 
+	}
+	if(date1.getAnnee()==date2.getAnnee()){
+		if(date1.getMois()>date2.getMois()){
+			return false;
+		}
+		if(date1.getMois()<date2.getMois()){
+			return true;
+		}
+		if(date1.getMois()==date2.getMois()){
+			if(date1.getJour()>=date2.getJour()){
+				return false; 
+			}
+			if(date1.getJour()<date2.getJour()){
+				return true; 
+			}
+
+		}
+	}
 }

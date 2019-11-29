@@ -8,7 +8,7 @@ LDFLAGS    =
 SRCS       = date.cpp main.cpp client.cpp chambre.cpp hotel.cpp reservation.cpp
 OBJS       = $(SRCS:.cpp=.o)
 # Replace tp_main with the name you want to give to your executable file
-TARGET     = testReservation
+TARGET     = testHotelClients
 DEPS	   = $(OBJS:.o=.d)
 
 all: $(TARGET)

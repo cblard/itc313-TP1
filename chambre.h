@@ -21,6 +21,7 @@ public:
 	string getType();
 	float getPrixNuit();
 	void modifierChambre(float prixNuit);
+	void afficherInfos();
 private:
 	int m_id;
 	type m_type;

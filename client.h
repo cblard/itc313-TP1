@@ -20,7 +20,8 @@ public:
 	string getPrenom();
 	int getNbReserv();
 	void ajouterReserv();
-	void changerNom(string nom); 
+	void changerNom(string nom);
+	void afficherInfos(); 
 private:
 	int m_id;
 	string m_nom;

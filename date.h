@@ -15,7 +15,11 @@ public:
 	int getJour() const;
 	int getMois() const;
 	int getAnnee() const;
+	void setJour(int jour);
+	void setMois(int mois);
+	void setAnnee(int annee);
 	void modifierDate(int jour, int mois, int annee);
+	bool checkDate();
 private:
 	int m_jour;
 	int m_mois;
