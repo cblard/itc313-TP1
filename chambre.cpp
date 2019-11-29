@@ -33,11 +33,19 @@ float Chambre::getPrixNuit(){
 	return m_prixNuit;
 }
 
-void Chambre::modifierChambre(float prixNuit){
-	m_prixNuit=prixNuit;
+void Chambre::modifierChambre(int type){
+	switch(type){
+		case 1: m_type=Single; m_prixNuit=100; break;
+		case 2: m_type=Double; m_prixNuit=125; break;
+		case 3: m_type=Suite; m_prixNuit=210; break;
+	}
 }
 
 void Chambre::afficherInfos(){
 	cout<<"Le prix de la chambre est de "<<setprecision(2)<<fixed<<m_prixNuit<<"€ par nuit.\n";
 	cout<<"Il s'agit d'une chambre "<<this->getType()<<".\n";
+}
+
+bool Chambre::disponible(){
+	return true; 
 }

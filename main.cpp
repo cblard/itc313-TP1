@@ -76,9 +76,26 @@ int main(){
 		compteur1++;
 	}
 	Reservation reservation(dateDebut, dateFin, hotel, chambre.at(1), client1);
-	cout<<reservation.calculerPrix(chambreSingle);
+	cout<<"nb nuits : "<<reservation.calculerNbNuits();
+	//cout<<"Le prix total de la réservation s'élève à : "<<reservation.calculerPrix(chambreSingle)<<" euros.\n";
 
-
+	int choix=0; bool checkChambre=false; compteur1=0;
+	while(checkChambre==false){
+		if(compteur1!=0) {cout<<"Ce type de chambre n'est pas disponible, veuillez réessayer.";}
+		while(choix!=1 && choix!=2 && choix!=3){
+		cout<<"\nQuel type de chambre souhaitez-vous ?\n 1.Single\n 2.Double\n 3.Suite\nEntrez votre choix (1, 2 ou 3):";
+		cin>>choix; 
+		}
+		Chambre chambreClient;
+		chambreClient.modifierChambre(choix);
+		chambreClient.afficherInfos();
+		checkChambre=chambreClient.disponible();
+		compteur1++;
+	}
+	/*string nom, prenom;
+	cout<<"Entrez votre nom : "; cin>>nom; 
+	cout<<"Entrez votre prénom : "; cin>>prenom;
+	Client client(nom, prenom);*/
 	return 0;
 }
 

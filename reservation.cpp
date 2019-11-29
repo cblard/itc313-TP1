@@ -14,7 +14,7 @@ using namespace std;
 bool comparerDate(Date date1, Date date2);
 
 Reservation::Reservation(Date debut, Date fin, Hotel hotel, Chambre chambre, Client client){
-	if(comparerDate(debut, fin)==true) { // On suppose que la réservation se passe sur la même année, la classe Date ne comprenant pas encore le système d'années
+	if(comparerDate(debut, fin)==true) {
 		m_dateDebut=debut;
 		m_dateFin=fin;
 		m_hotelID=hotel.getID();
@@ -38,14 +38,14 @@ int Reservation::calculerNbNuits(){
 	int jour1=m_dateDebut.getJour(), jour2=m_dateFin.getJour();
 
 	int nbAnnees=0;
-	if(annee2!=annee1){nbAnnees=annee2-annee1-1;}
+	if(annee2!=annee1){nbAnnees=annee2-annee1;}
 	int nbMois=0;
-	if(mois1<mois2){nbMois=mois2-mois1-1;}
-	if(mois1>mois2){nbMois=12-mois1-1+mois2;}
+	if(mois1<mois2){nbMois=mois2-mois1;}
+	if(mois1>=mois2){nbMois=12-mois1-1+mois2; nbAnnees--;}
 	int nbJours=0;
 	if(jour1<jour2){nbJours=jour2-jour1;}
-	if(jour1>jour2){nbJours=tab.at(mois1-1)-jour1+jour2;}
-	return nbAnnees*365+nbMois*30+nbJours;
+	if(jour1>=jour2){nbJours=tab.at(mois1-1)-jour1+jour2; nbMois--;}
+	return nbAnnees*365+nbMois*30+nbJours-1;
 
 }
 float Reservation::calculerPrix(Chambre chambre){

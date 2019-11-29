@@ -16,12 +16,13 @@ enum type {Single, Double, Suite} ;
 
 class Chambre{
 public:
-	Chambre(type typeChambre, float prixNuit);
+	Chambre(type typeChambre=Single, float prixNuit=100);
 	int getID();
 	string getType();
 	float getPrixNuit();
-	void modifierChambre(float prixNuit);
+	void modifierChambre(int type);
 	void afficherInfos();
+	bool disponible();
 private:
 	int m_id;
 	type m_type;
