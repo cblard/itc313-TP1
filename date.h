@@ -11,7 +11,7 @@
 
 class Date {
 public:
-	Date(int jour, int mois, int annee);
+	Date(int jour=1, int mois=1, int annee=1);
 	int getJour() const;
 	int getMois() const;
 	int getAnnee() const;

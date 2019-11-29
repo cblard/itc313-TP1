@@ -9,7 +9,7 @@
 #include "hotel.h"
 
 Hotel::Hotel(string nom, string ville) : m_nom(nom), m_ville(ville) {
-
+	m_id=0;
 }
 
 int Hotel::getID(){
