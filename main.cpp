@@ -115,13 +115,15 @@ int main(){
 		// Boucle pour afficher les clients homonymes 
 
 	for(unsigned long i=0; i<clients.size(); i++){
-		if(clients.at(i).getNom()==nom && clients.at(i).getPrenom()==prenom) {cout<<i+1<<" : "clients.at(i).afficherInfos(); compteur1++}
+		if(clients.at(i).getNom()==nom && clients.at(i).getPrenom()==prenom) {
+			cout<<i+1<<" : "; 
+			clients.at(i).afficherInfos(); 
+			compteur1++;};
 	}
 		//if(compteur1>=2){cout<<"Entrez le numéro du client correspondant : ";cin>>choix;}
 
 	// Question 10 : Validation de la réservation 
 
-	cout<<"Le prix total de la réservation s'élève à : "<<reservation.calculerPrix(chambreClient)<<" euros.\n";
 	
 	Reservation resaClient(dateDebut, dateFin, hotel, chambreClient, client);
 
